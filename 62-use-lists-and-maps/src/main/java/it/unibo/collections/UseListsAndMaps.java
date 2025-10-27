@@ -1,5 +1,8 @@
 package it.unibo.collections;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,19 +24,33 @@ public final class UseListsAndMaps {
          * 1) Create a new ArrayList<Integer>, and populate it with the numbers
          * from 1000 (included) to 2000 (excluded).
          */
+        List<Integer> array = new ArrayList<>();
+        for (int i = 1000; i < 2000; i++) {
+            array.add(i);
+        }
         /*
          * 2) Create a new LinkedList<Integer> and, in a single line of code
          * without using any looping construct (for, while), populate it with
          * the same contents of the list of point 1.
          */
+        List<Integer> list = new LinkedList<>(array);
+     
         /*
          * 3) Using "set" and "get" and "size" methods, swap the first and last
          * element of the first list. You can not use any "magic number".
          * (Suggestion: use a temporary variable)
          */
+        final int temp = array.getFirst();
+        array.set(0, array.getLast());
+        array.set((array.size() - 1), temp);
+
         /*
          * 4) Using a single for-each, print the contents of the arraylist.
          */
+        Iterator<Integer> it = array.iterator();
+        while(it.hasNext()) {
+            System.out.print("| " + it.next() + " | ");
+        }
         /*
          * 5) Measure the performance of inserting new elements in the head of
          * the collection: measure the time required to add 100.000 elements as
@@ -41,6 +58,7 @@ public final class UseListsAndMaps {
          * using the previous lists. In order to measure times, use as example
          * TestPerformance.java.
          */
+        
         /*
          * 6) Measure the performance of reading 1000 times an element whose
          * position is in the middle of the collection for both ArrayList and
