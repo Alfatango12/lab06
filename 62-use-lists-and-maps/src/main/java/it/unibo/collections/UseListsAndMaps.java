@@ -82,7 +82,8 @@ public final class UseListsAndMaps {
         linkedListTime = System.nanoTime() - linkedListTime;
         final var listMillis = TimeUnit.NANOSECONDS.toMillis(linkedListTime);
 
-        
+        printBenchmarkTime(arrayMillis, "ArrayList", ELEMS);
+        printBenchmarkTime(listMillis, "LinkedList", ELEMS);
 
         
         /*
@@ -112,5 +113,8 @@ public final class UseListsAndMaps {
          */
     }
 
-    
+    public static void printBenchmarkTime(long millis, final String varName, final int nElements) {
+        System.out.println();
+        System.out.println("Time needed to insert " + nElements + " elements in a " + varName + " took " + millis + "ms");
+    }
 }
