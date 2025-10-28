@@ -23,6 +23,8 @@ public final class UseListsAndMaps {
     public static void main(final String... s) {
         final int ELEMS = 100_000;
         final int nReads = 1000;
+        final String writeOperation = "Write";
+        final String readOperation = "Read";
         /*
          * 1) Create a new ArrayList<Integer>, and populate it with the numbers
          * from 1000 (included) to 2000 (excluded).
@@ -83,8 +85,8 @@ public final class UseListsAndMaps {
         linkedListTime = System.nanoTime() - linkedListTime;
         long listMillis = TimeUnit.NANOSECONDS.toMillis(linkedListTime);
 
-        printBenchmarkTime(arrayMillis, "ArrayList", ELEMS);
-        printBenchmarkTime(listMillis, "LinkedList", ELEMS);
+        printBenchmarkTime(arrayMillis, "ArrayList", ELEMS, writeOperation);
+        printBenchmarkTime(listMillis, "LinkedList", ELEMS, writeOperation);
 
         
         /*
@@ -114,6 +116,10 @@ public final class UseListsAndMaps {
         linkedListTime = System.nanoTime() - arrayListTime;
         listMillis = TimeUnit.NANOSECONDS.toMillis(arrayListTime);
 
+        printBenchmarkTime(arrayMillis, "ArrayList", ELEMS, readOperation);
+        printBenchmarkTime(listMillis, "LinkedList", ELEMS, readOperation);
+
+
         /*
          * 7) Build a new Map that associates to each continent's name its
          * population:
@@ -135,8 +141,8 @@ public final class UseListsAndMaps {
          */
     }
 
-    public static void printBenchmarkTime(long millis, final String varName, final int nElements) {
+    public static void printBenchmarkTime(long millis, final String varName, final int nElements, String operation) {
         System.out.println();
-        System.out.println("Time needed to insert " + nElements + " elements in a " + varName + " took " + millis + "ms");
+        System.out.println("Time needed to " + operation + " " + nElements + " elements in a " + varName + " took " + millis + "ms");
     }
 }
