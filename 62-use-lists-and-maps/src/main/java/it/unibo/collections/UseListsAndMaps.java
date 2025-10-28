@@ -22,6 +22,7 @@ public final class UseListsAndMaps {
      */
     public static void main(final String... s) {
         final int ELEMS = 100_000;
+        final int nReads = 1000;
         /*
          * 1) Create a new ArrayList<Integer>, and populate it with the numbers
          * from 1000 (included) to 2000 (excluded).
@@ -69,7 +70,7 @@ public final class UseListsAndMaps {
         }
 
         arrayListTime = System.nanoTime() - arrayListTime;
-        final var arrayMillis = TimeUnit.NANOSECONDS.toMillis(arrayListTime);
+        long arrayMillis = TimeUnit.NANOSECONDS.toMillis(arrayListTime);
 
         /* Linked List */
 
@@ -80,7 +81,7 @@ public final class UseListsAndMaps {
         }
 
         linkedListTime = System.nanoTime() - linkedListTime;
-        final var listMillis = TimeUnit.NANOSECONDS.toMillis(linkedListTime);
+        long listMillis = TimeUnit.NANOSECONDS.toMillis(linkedListTime);
 
         printBenchmarkTime(arrayMillis, "ArrayList", ELEMS);
         printBenchmarkTime(listMillis, "LinkedList", ELEMS);
@@ -92,6 +93,27 @@ public final class UseListsAndMaps {
          * LinkedList, using the collections of point 5. In order to measure
          * times, use as example TestPerformance.java.
          */
+
+        /* ArrayList */
+
+        arrayListTime = System.nanoTime();
+        int arraySize = array.size();
+        for (int i = 0; i < nReads; i++) {
+            array.get(arraySize / 2);
+        }
+
+        arrayListTime = System.nanoTime() - arrayListTime;
+        arrayMillis = TimeUnit.NANOSECONDS.toMillis(arrayListTime);
+
+        linkedListTime = System.nanoTime();
+        int listSize = list.size();
+        for (int i = 0; i < nReads; i++) {
+            list.get(listSize / 2);
+        }
+
+        linkedListTime = System.nanoTime() - arrayListTime;
+        listMillis = TimeUnit.NANOSECONDS.toMillis(arrayListTime);
+
         /*
          * 7) Build a new Map that associates to each continent's name its
          * population:
