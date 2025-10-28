@@ -149,6 +149,12 @@ public final class UseListsAndMaps {
         /*
          * 8) Compute the population of the world
          */
+        long worldPopulation = 0;
+        for (Long value : world.values()) {
+            worldPopulation += value;
+        }
+        System.out.println();
+        System.out.println("World Population is: " + worldPopulation);
     }
 
     public static void printBenchmarkTime(long millis, final String varName, final int nElements, String operation) {
