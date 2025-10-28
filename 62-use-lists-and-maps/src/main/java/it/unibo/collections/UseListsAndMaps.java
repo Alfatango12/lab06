@@ -113,8 +113,8 @@ public final class UseListsAndMaps {
             list.get(listSize / 2);
         }
 
-        linkedListTime = System.nanoTime() - arrayListTime;
-        listMillis = TimeUnit.NANOSECONDS.toMillis(arrayListTime);
+        linkedListTime = System.nanoTime() - linkedListTime;
+        listMillis = TimeUnit.NANOSECONDS.toMillis(linkedListTime);
 
         printBenchmarkTime(arrayMillis, "ArrayList", ELEMS, readOperation);
         printBenchmarkTime(listMillis, "LinkedList", ELEMS, readOperation);
