@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Example class using {@link List} and {@link Map}.
@@ -20,6 +21,7 @@ public final class UseListsAndMaps {
      *            unused
      */
     public static void main(final String... s) {
+        final int ELEMS = 100_000;
         /*
          * 1) Create a new ArrayList<Integer>, and populate it with the numbers
          * from 1000 (included) to 2000 (excluded).
@@ -58,6 +60,30 @@ public final class UseListsAndMaps {
          * using the previous lists. In order to measure times, use as example
          * TestPerformance.java.
          */
+
+        /* ArrayList */
+        long arrayListTime = System.nanoTime();
+
+        for (int i = 0; i < ELEMS; i++) {
+            array.addFirst(i);
+        }
+
+        arrayListTime = System.nanoTime() - arrayListTime;
+        final var arrayMillis = TimeUnit.NANOSECONDS.toMillis(arrayListTime);
+
+        /* Linked List */
+
+        long linkedListTime = System.nanoTime();
+
+        for (int i = 0; i < ELEMS; i++) {
+            list.addFirst(i);
+        }
+
+        linkedListTime = System.nanoTime() - linkedListTime;
+        final var listMillis = TimeUnit.NANOSECONDS.toMillis(linkedListTime);
+
+        
+
         
         /*
          * 6) Measure the performance of reading 1000 times an element whose
@@ -85,4 +111,6 @@ public final class UseListsAndMaps {
          * 8) Compute the population of the world
          */
     }
+
+    
 }
