@@ -53,7 +53,8 @@ public final class UseArithmeticService {
         try {
             server.sendData(message);
         } catch (IOException error) {
-            System.err.println("Failed to send message, catched I/O Exception. Retrying... ");
+            System.err.println("Failed to send message, catched I/O Exception " + error.getMessage());
+            System.out.println("Retrying... ");
             retryReceiveOnNetworkError(server);
         }
     }
@@ -63,7 +64,16 @@ public final class UseArithmeticService {
          * This method should re-try to retrieve information from the provided server, catching all IOExceptions,
          * until it succeeds.
          */
-        return null;
+        String msg = null;
+        try {
+            msg = server.receiveResponse();
+        } catch (IOException e) {
+            System.err.println("Failed to receive message, catched I/O exception " + e.getMessage());
+            System.out.println("Retrying... ");
+            retryReceiveOnNetworkError(server);
+        }
+        
+        return msg;
     }
 
     private static void assertEqualsAsDouble(final String expected, final String actual) {
