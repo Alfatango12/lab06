@@ -65,11 +65,9 @@ public final class UseArithmeticService {
          * This method should re-try to retrieve information from the provided server, catching all IOExceptions,
          * until it succeeds.
          */
-        String msg = null;
         while (true) {
             try {
-                msg = server.receiveResponse();
-                return msg;
+                return server.receiveResponse();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
