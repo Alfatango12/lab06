@@ -54,9 +54,8 @@ public final class UseArithmeticService {
             try {
                 server.sendData(message);
                 return;
-            } catch (IOException error) {
-                System.err.println("Failed to send message, catched I/O Exception " + error.getMessage());
-                System.out.println("Retrying... ");
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -72,8 +71,7 @@ public final class UseArithmeticService {
                 msg = server.receiveResponse();
                 return msg;
             } catch (IOException e) {
-                System.err.println("Failed to receive message, catched I/O exception " + e.getMessage());
-                System.out.println("Retrying... ");
+                System.out.println(e.getMessage());
             }
             
         }
