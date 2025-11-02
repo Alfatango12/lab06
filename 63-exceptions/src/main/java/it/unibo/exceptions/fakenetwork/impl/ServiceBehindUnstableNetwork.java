@@ -60,7 +60,7 @@ public final class ServiceBehindUnstableNetwork implements NetworkComponent {
         } else {
             final var message = data + " is not a valid keyword (allowed: " + KEYWORDS + "), nor is a number";
             commandQueue.clear();
-            throw new IllegalStateException(message);
+            throw new IllegalArgumentException(message);
             /*
              * This method, in this point, should throw an IllegalStateException.
              * Its cause, however, is the previous NumberFormatException.
