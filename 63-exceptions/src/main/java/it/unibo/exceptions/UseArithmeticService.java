@@ -54,7 +54,7 @@ public final class UseArithmeticService {
             try {
                 server.sendData(message);
                 return;
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -68,7 +68,7 @@ public final class UseArithmeticService {
         while (true) {
             try {
                 return server.receiveResponse();
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 System.out.println(e.getMessage());
             }
             
